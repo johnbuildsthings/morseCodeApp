@@ -1,8 +1,8 @@
 #!/usr/bin/python
 from random import randint
 
-"""
-this is a morse to english and english to morse testing app
+rules = """
+This is a morse to english and english to morse testing app
 to improve understanding of morse code
 
 Morse Code Rules:
@@ -39,14 +39,26 @@ if __name__ == '__main__':
       a = q
       q = getEnglish(q)
 
-    # print (a, q)
-    print ('What is the {0} for {1}'.format(unicode(code, 'utf-8'), unicode(q, 'utf-8'))) 
-    answer = raw_input("Your answer: ")
+    print ('\nWhat is the {0} for {1}'.format(unicode(code, 'utf-8'), unicode(q, 'utf-8'))) 
+    answer = raw_input("Enter answer or q to quit or h for help \nYour answer: ")
 
-    if(answer == a):
-      print ("Yes {0} is the correct answer!".format(unicode(a, 'utf-8')))
+    if(answer == 'q'):
+      play = 0
+    elif(answer == 'h'):
+      print '\n=============================================================================================='
+      print rules
+      print '=============================================================================================='
+      for index in range(65, 91):
+        letter = chr(index)
+        morseCode = englishChars[letter]
+        if(((index-64) % 3) == 0):
+          print (letter + ' = ' + morseCode)
+        else:
+          space = (' ' * (10 - len(morseCode)))
+          print (letter + ' = ' + morseCode + space),
+      print '\n=============================================================================================='
+
+    elif(answer == a or answer.upper() == a):
+      print ("\nYes {0} is the correct answer!".format(unicode(a, 'utf-8')))
     else:
-      print ("No {0} is not the correct answer \n{1} is the correst answer".format(unicode(answer, 'utf-8'), unicode(a, 'utf-8')))
-
-    keepPlaying = raw_input("Continue playing (yes / no): ")
-    play = (keepPlaying == 'yes') and 1 or 0
+      print ("\nNo {0} is not the correct answer \n{1} is the correst answer".format(unicode(answer, 'utf-8'), unicode(a, 'utf-8')))
